@@ -142,7 +142,7 @@ include 'header.php';
 
             <div class="row">
                 <!-- Featured Article -->
-                <div class="col-lg-6 mb-4">
+                <div class="col-lg-6 mb-4" style="margin-top:7px;">
                     <?php if ($featured_article): ?>
                         <div class="featured-article" data-href="article.php?slug=<?php echo $featured_article['slug']; ?>">
                             <img src="<?php echo $featured_article['featured_image'] ? 'assets/images/articles/' . $featured_article['featured_image'] : 'https://via.placeholder.com/500x300/0153b7/ffffff?text=Featured+Article'; ?>"
@@ -162,6 +162,7 @@ include 'header.php';
                                 <p class="article-excerpt">
                                     <?php echo htmlspecialchars($featured_article['excerpt'] ?: substr(strip_tags($featured_article['content']), 0, 150) . '...'); ?>
                                 </p>
+                                <br> <br>
                                 <a href="article.php?slug=<?php echo $featured_article['slug']; ?>"
                                     class="btn btn-outline-primary">Read More</a>
                             </div>

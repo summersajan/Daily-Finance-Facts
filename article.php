@@ -52,6 +52,48 @@ $meta_description = $article['meta_description'] ?: substr(strip_tags($article['
 
 include 'header1.php';
 ?>
+<style>
+    /* Fix excessive vertical spacing around images in article content */
+    .article-content-page img {
+        margin: 1rem 0 !important;
+        display: block;
+        max-width: 100%;
+        height: auto;
+        border-radius: 8px;
+    }
+
+    /* Reduce paragraph margins */
+    .article-content-page p {
+        margin-top: 0;
+        margin-bottom: 1rem;
+        line-height: 1.6;
+    }
+
+    /* Remove extra margin on first and last images */
+    .article-content-page img:first-child {
+        margin-top: 0 !important;
+    }
+
+    .article-content-page img:last-child {
+        margin-bottom: 1rem !important;
+    }
+
+    /* Handle figure elements if present */
+    .article-content-page figure {
+        margin: 1rem 0;
+    }
+
+    .article-content-page figure img {
+        margin: 0 !important;
+    }
+
+    /* Handle floated images if any */
+    .article-content-page img.alignleft,
+    .article-content-page img.alignright {
+        margin: 0.5rem;
+    }
+</style>
+
 
 <div class="container mt-4">
     <!-- Back Button and Breadcrumb -->
@@ -524,5 +566,6 @@ include 'header1.php';
         }
     });
 </script>
+
 
 <?php include 'footer.php'; ?>
