@@ -162,7 +162,7 @@ include 'header.php';
                                 <p class="article-excerpt">
                                     <?php echo htmlspecialchars($featured_article['excerpt'] ?: substr(strip_tags($featured_article['content']), 0, 150) . '...'); ?>
                                 </p>
-                                <br> <br>
+
                                 <a href="article.php?slug=<?php echo $featured_article['slug']; ?>"
                                     class="btn btn-outline-primary">Read More</a>
                             </div>
