@@ -142,7 +142,7 @@ include 'header.php';
 
             <div class="row">
                 <!-- Featured Article -->
-                <div class="col-lg-6 mb-4" style="margin-top:7px;">
+                <div class="col-lg-6 mb-4">
                     <?php if ($featured_article): ?>
                         <div class="featured-article" data-href="article.php?slug=<?php echo $featured_article['slug']; ?>">
                             <img src="<?php echo $featured_article['featured_image'] ? 'assets/images/articles/' . $featured_article['featured_image'] : 'https://via.placeholder.com/500x300/0153b7/ffffff?text=Featured+Article'; ?>"
