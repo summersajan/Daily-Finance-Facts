@@ -11,29 +11,45 @@ $db = $database->getConnection();
 $search_query = trim($_GET['search'] ?? '');
 $search_results = [];
 if ($search_query !== '') {
-    // Enhanced search including category names and tags (without meta_keywords)
-    $stmt = $db->prepare("SELECT DISTINCT a.*, c.name as category_name, u.full_name as author_name
+    $stmt = $db->prepare("SELECT a.id, a.title, a.excerpt, a.content, a.slug, a.featured_image, 
+                                 a.publish_date, a.created_at, a.views,
+                                 c.name as category_name, u.full_name as author_name
                           FROM articles a
                           LEFT JOIN categories c ON a.category_id = c.id
                           LEFT JOIN admin_users u ON a.author_id = u.id
                           WHERE a.status = 'published'
-                            AND (a.title LIKE :q 
-                                 OR a.excerpt LIKE :q 
-                                 OR a.content LIKE :q
-                                 OR c.name LIKE :q
-                                 OR a.tags LIKE :q)
+                            AND (a.content IS NOT NULL AND TRIM(a.content) != '')
+                            AND (a.title IS NOT NULL AND TRIM(a.title) != '')
+                            AND (
+                                a.title LIKE :q 
+                                OR a.excerpt LIKE :q 
+                                OR (a.content LIKE :q AND a.content NOT LIKE '%<img%>%')
+                            )
                           ORDER BY 
                             CASE 
                                 WHEN a.title LIKE :q THEN 1
                                 WHEN a.excerpt LIKE :q THEN 2
-                                WHEN c.name LIKE :q THEN 3
-                                WHEN a.tags LIKE :q THEN 4
-                                WHEN a.content LIKE :q THEN 5
-                                ELSE 6
+                                WHEN a.content LIKE :q THEN 3
+                                ELSE 4
                             END,
-                            a.publish_date DESC");
+                            a.publish_date DESC
+                          LIMIT 50");
     $stmt->execute([':q' => "%$search_query%"]);
-    $search_results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    $potential_results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+    // Further filter in PHP to ensure no image-related matches
+    foreach ($potential_results as $article) {
+        $clean_content = preg_replace('/<img[^>]*>/i', '', $article['content']);
+        $clean_content = strip_tags($clean_content);
+
+        if (
+            stripos($article['title'], $search_query) !== false ||
+            stripos($article['excerpt'], $search_query) !== false ||
+            stripos($clean_content, $search_query) !== false
+        ) {
+            $search_results[] = $article;
+        }
+    }
 }
 
 
@@ -383,28 +399,28 @@ include 'header.php';
         });
 
         // Clear search functionality
-        const searchInput = document.querySelector('input[name="search"]');
-        if (searchInput) {
-            let timeout;
-            searchInput.addEventListener('input', function () {
-                clearTimeout(timeout);
-                if (this.value.trim() === '') {
-                    timeout = setTimeout(() => {
-                        if (this.value.trim() === '') {
-                            window.location.href = 'index.php';
-                        }
-                    }, 300);
-                }
-            });
-
-            // Clear on escape key
-            searchInput.addEventListener('keydown', function (e) {
-                if (e.key === 'Escape') {
-                    this.value = '';
-                    window.location.href = 'index.php';
-                }
-            });
-        }
+        /* const searchInput = document.querySelector('input[name="search"]');
+         if (searchInput) {
+             let timeout;
+             searchInput.addEventListener('input', function () {
+                 clearTimeout(timeout);
+                 if (this.value.trim() === '') {
+                     timeout = setTimeout(() => {
+                         if (this.value.trim() === '') {
+                             window.location.href = 'index.php';
+                         }
+                     }, 300);
+                 }
+             });
+ 
+             // Clear on escape key
+             searchInput.addEventListener('keydown', function (e) {
+                 if (e.key === 'Escape') {
+                     this.value = '';
+                     window.location.href = 'index.php';
+                 }
+             });
+         }*/
 
         // Article card hover effects
         $('.article-card').hover(

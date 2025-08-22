@@ -2,20 +2,43 @@
 $page_title = "Search Results - Daily Finance Facts";
 require_once 'config/database.php';
 
-$search = trim($_GET['q'] ?? '');
+
 $database = new Database();
 $db = $database->getConnection();
 
-// Query for articles matching search
-$query = "SELECT a.*, c.name as category_name, u.full_name as author_name
-          FROM articles a
-          LEFT JOIN categories c ON a.category_id = c.id
-          LEFT JOIN admin_users u ON a.author_id = u.id
-          WHERE a.status='published' AND (a.title LIKE :search OR a.excerpt LIKE :search OR a.content LIKE :search)
-          ORDER BY a.publish_date DESC";
-$stmt = $db->prepare($query);
-$stmt->execute([':search' => "%$search%"]);
-$search_articles = $stmt->fetchAll(PDO::FETCH_ASSOC);
+
+
+
+$search_query = trim($_GET['search'] ?? '');
+$search_results = [];
+if ($search_query !== '') {
+    // Enhanced search including category names and tags (without meta_keywords)
+    $stmt = $db->prepare("SELECT DISTINCT a.*, c.name as category_name, u.full_name as author_name
+                          FROM articles a
+                          LEFT JOIN categories c ON a.category_id = c.id
+                          LEFT JOIN admin_users u ON a.author_id = u.id
+                          WHERE a.status = 'published'
+                            AND (a.title LIKE :q 
+                                 OR a.excerpt LIKE :q 
+                                 OR a.content LIKE :q
+                                 OR c.name LIKE :q
+                                 OR a.tags LIKE :q)
+                          ORDER BY 
+                            CASE 
+                                WHEN a.title LIKE :q THEN 1
+                                WHEN a.excerpt LIKE :q THEN 2
+                                WHEN c.name LIKE :q THEN 3
+                                WHEN a.tags LIKE :q THEN 4
+                                WHEN a.content LIKE :q THEN 5
+                                ELSE 6
+                            END,
+                            a.publish_date DESC");
+    $stmt->execute([':q' => "%$search_query%"]);
+    $search_articles = $stmt->fetchAll(PDO::FETCH_ASSOC);
+}
+
+
+
 
 include 'header.php';
 ?>

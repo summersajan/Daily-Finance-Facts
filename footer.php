@@ -183,27 +183,26 @@
 
         // Clear search functionality
         const searchInput = document.querySelector('input[name="search"]');
-        if (searchInput) {
-            let timeout;
-            searchInput.addEventListener('input', function () {
-                clearTimeout(timeout);
-                if (this.value.trim() === '') {
-                    timeout = setTimeout(() => {
-                        if (this.value.trim() === '') {
-                            window.location.href = 'index.php';
-                        }
-                    }, 300);
-                }
-            });
-
-            // Clear on escape key
-            searchInput.addEventListener('keydown', function (e) {
-                if (e.key === 'Escape') {
-                    this.value = '';
-                    window.location.href = 'index.php';
-                }
-            });
-        }
+        /* if (searchInput) {
+             let timeout;
+              searchInput.addEventListener('input', function () {
+                  clearTimeout(timeout);
+                  if (this.value.trim() === '') {
+                      timeout = setTimeout(() => {
+                          if (this.value.trim() === '') {
+                              window.location.href = 'index.php';
+                          }
+                      }, 300);
+                  }
+              });
+ 
+             searchInput.addEventListener('keydown', function (e) {
+                 if (e.key === 'Escape') {
+                     this.value = '';
+                     window.location.href = 'index.php';
+                 }
+             });
+         }*/
 
         // Article card hover effects
         $('.article-card').hover(
