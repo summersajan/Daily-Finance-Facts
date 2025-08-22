@@ -50,7 +50,7 @@ $related_articles = $related_stmt->fetchAll(PDO::FETCH_ASSOC);
 $page_title = $article['meta_title'] ?: $article['title'] . ' - Daily Finance Facts';
 $meta_description = $article['meta_description'] ?: substr(strip_tags($article['content']), 0, 160);
 
-include 'header1.php';
+include 'header.php';
 ?>
 <style>
     /* Fix excessive vertical spacing around images in article content */

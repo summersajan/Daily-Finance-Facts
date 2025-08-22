@@ -604,7 +604,7 @@ $db = $database->getConnection();
 
                             foreach ($nav_categories as $nav_cat) {
                                 echo '<li class="nav-item">';
-                                echo '<a class="nav-link" href="#cat-' . htmlspecialchars($nav_cat['slug']) . '">' . htmlspecialchars(strtoupper($nav_cat['name'])) . '</a>';
+                                echo '<a class="nav-link" href="category.php?category=' . htmlspecialchars($nav_cat['slug']) . '">' . htmlspecialchars(strtoupper($nav_cat['name'])) . '</a>';
                                 echo '</li>';
                             }
                         } catch (Exception $e) {

@@ -80,7 +80,7 @@ $categories_stmt = $db->prepare($categories_query);
 $categories_stmt->execute();
 $categories = $categories_stmt->fetchAll(PDO::FETCH_ASSOC);
 
-include 'header1.php';
+include 'header.php';
 ?>
 
 <div class="container my-5">
