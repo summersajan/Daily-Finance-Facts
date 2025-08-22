@@ -570,6 +570,27 @@ $db = $database->getConnection();
             border-radius: 8px;
             margin: 1.5rem 0;
         }
+
+        .navbar-nav .nav-link.active {
+            background-color: rgba(255, 255, 255, 0.2) !important;
+            color: #fff !important;
+            font-weight: 600;
+            border-radius: 4px;
+            transform: translateY(-1px);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .navbar-nav .nav-link.active::after {
+            width: 100%;
+            left: 0;
+            background-color: #fff;
+        }
+
+        /* On hover for active link */
+        .navbar-nav .nav-link.active:hover {
+            background-color: rgba(255, 255, 255, 0.3) !important;
+            transform: translateY(-2px);
+        }
     </style>
     <link rel="icon" type="image/png" href="assets/images/favicon.svg">
 
@@ -595,6 +616,18 @@ $db = $database->getConnection();
                         <a class="nav-link" href="index.php">HOME</a>
                     </li>
                     <?php
+                    // Get the current URL path and extract category from it
+                    $current_path = $_SERVER['REQUEST_URI'] ?? '';
+                    $current_category = '';
+
+                    // Check if we're on a category page
+                    if (strpos($current_path, 'category.php?category=') !== false) {
+                        parse_str(parse_url($current_path, PHP_URL_QUERY), $params);
+                        $current_category = $params['category'] ?? '';
+                    } elseif (preg_match('/\/category\/([^\/\?]+)/', $current_path, $matches)) {
+                        $current_category = $matches[1];
+                    }
+
                     // Fetch categories for navigation (only if not in search mode and $db is available)
                     if (isset($db) && empty($_GET['search'])) {
                         try {
@@ -603,8 +636,13 @@ $db = $database->getConnection();
                             $nav_categories = $nav_cat_stmt->fetchAll(PDO::FETCH_ASSOC);
 
                             foreach ($nav_categories as $nav_cat) {
+                                // Check if this category is currently active
+                                $is_active = ($current_category === $nav_cat['slug']) ? 'active' : '';
+
                                 echo '<li class="nav-item">';
-                                echo '<a class="nav-link" href="category.php?category=' . htmlspecialchars($nav_cat['slug']) . '">' . htmlspecialchars(strtoupper($nav_cat['name'])) . '</a>';
+                                echo '<a class="nav-link ' . $is_active . '" href="category.php?category=' . htmlspecialchars($nav_cat['slug']) . '">';
+                                echo htmlspecialchars(strtoupper($nav_cat['name']));
+                                echo '</a>';
                                 echo '</li>';
                             }
                         } catch (Exception $e) {
@@ -612,6 +650,7 @@ $db = $database->getConnection();
                         }
                     }
                     ?>
+
                     <li class="nav-item">
                         <form method="GET" action="index.php" class="d-flex search-form ms-2">
                             <input type="text" name="search" class="form-control form-control-sm me-1"
