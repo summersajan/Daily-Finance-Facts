@@ -10,3 +10,6 @@ RewriteRule ^([^/]+)/?$ $1.php [L]
 
 # Rewrite category URLs
 RewriteRule ^category/([a-zA-Z0-9_-]+)/?$ category.php?category=$1 [L,QSA]
+
+# Clean Article URLs
+RewriteRule ^article/([a-zA-Z0-9_-]+)/?$ article.php?slug=$1 [L,QSA]

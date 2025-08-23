@@ -592,7 +592,7 @@ $db = $database->getConnection();
             transform: translateY(-2px);
         }
     </style>
-    <link rel="icon" type="image/png" href="assets/images/favicon.svg">
+    <link rel="icon" type="image/png" href="/assets/images/favicon.svg">
 
 </head>
 

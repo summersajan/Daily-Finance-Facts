@@ -131,16 +131,16 @@ include 'header.php';
             <?php foreach ($search_results as $article): ?>
                 <div class="row mb-5 pb-4 border-bottom">
                     <div class="col-md-4">
-                        <a href="article.php?slug=<?php echo urlencode($article['slug']); ?>">
+                        <a href="/article/<?php echo htmlspecialchars($row['slug']); ?>">
                             <img src="<?php echo $article['featured_image']
-                                ? 'assets/images/articles/' . $article['featured_image']
+                                ? '/assets/images/articles/' . $article['featured_image']
                                 : 'https://via.placeholder.com/340x220/0153b7/ffffff?text=Article'; ?>"
                                 alt="<?php echo htmlspecialchars($article['title']); ?>" class="img-fluid rounded"
                                 style="width:100%;max-width:340px;height:220px;object-fit:cover;">
                         </a>
                     </div>
                     <div class="col-md-8 d-flex flex-column justify-content-center">
-                        <a href="article.php?slug=<?php echo urlencode($article['slug']); ?>" class="text-decoration-none">
+                        <a href="/article/<?php echo htmlspecialchars($row['slug']); ?>" class="text-decoration-none">
                             <h3 class="fw-bold mb-2" style="color:var(--primary-blue); font-size:1.3rem;">
                                 <?php echo htmlspecialchars($article['title']); ?>
                             </h3>
@@ -182,8 +182,8 @@ include 'header.php';
                 <!-- Featured Article -->
                 <div class="col-lg-6 mb-4" style="margin-top:7px;">
                     <?php if ($featured_article): ?>
-                        <div class="featured-article" data-href="article.php?slug=<?php echo $featured_article['slug']; ?>">
-                            <img src="<?php echo $featured_article['featured_image'] ? 'assets/images/articles/' . $featured_article['featured_image'] : 'https://via.placeholder.com/500x300/0153b7/ffffff?text=Featured+Article'; ?>"
+                        <div class="featured-article" data-href="/article/<?php echo htmlspecialchars($row['slug']); ?>">
+                            <img src="<?php echo $featured_article['featured_image'] ? '/assets/images/articles/' . $featured_article['featured_image'] : 'https://via.placeholder.com/500x300/0153b7/ffffff?text=Featured+Article'; ?>"
                                 alt="<?php echo htmlspecialchars($featured_article['title']); ?>" class="img-fluid">
                             <div class="article-content">
                                 <h3 class="article-title"><?php echo htmlspecialchars($featured_article['title']); ?></h3>
@@ -201,7 +201,7 @@ include 'header.php';
                                     <?php echo htmlspecialchars($featured_article['excerpt'] ?: substr(strip_tags($featured_article['content']), 0, 150) . '...'); ?>
                                 </p>
                                 <br> <br>
-                                <a href="article.php?slug=<?php echo $featured_article['slug']; ?>"
+                                <a href="/article/<?php echo htmlspecialchars($row['slug']); ?>"
                                     class="btn btn-outline-primary">Read More</a>
                             </div>
                         </div>
@@ -225,8 +225,9 @@ include 'header.php';
                     <div class="article-list">
                         <?php if (!empty($recent_articles)): ?>
                             <?php foreach ($recent_articles as $article): ?>
-                                <div class="article-item d-flex mb-3" data-href="article.php?slug=<?php echo $article['slug']; ?>">
-                                    <img src="<?php echo $article['featured_image'] ? 'assets/images/articles/' . $article['featured_image'] : 'https://via.placeholder.com/80x80/0153b7/ffffff?text=' . substr($article['title'], 0, 1); ?>"
+                                <div class="article-item d-flex mb-3"
+                                    data-href="/article/<?php echo htmlspecialchars($row['slug']); ?>">
+                                    <img src="<?php echo $article['featured_image'] ? '/assets/images/articles/' . $article['featured_image'] : 'https://via.placeholder.com/80x80/0153b7/ffffff?text=' . substr($article['title'], 0, 1); ?>"
                                         alt="<?php echo htmlspecialchars($article['title']); ?>" class="article-thumb rounded">
                                     <div class="article-info ms-3">
                                         <h5 class="article-title-small">
@@ -279,9 +280,8 @@ include 'header.php';
                         <?php if ($cat_articles): ?>
                             <?php foreach ($cat_articles as $article): ?>
                                 <div class="col-md-4 mb-4">
-                                    <div class="card article-card h-100"
-                                        data-href="article.php?slug=<?php echo urlencode($article['slug']); ?>">
-                                        <img src="<?php echo $article['featured_image'] ? 'assets/images/articles/' . $article['featured_image'] : 'https://via.placeholder.com/400x250/0153b7/ffffff?text=' . urlencode($cat['name']); ?>"
+                                    <div class="card article-card h-100" data-href="/article/<?php echo htmlspecialchars($row['slug']); ?>">
+                                        <img src="<?php echo $article['featured_image'] ? '/assets/images/articles/' . $article['featured_image'] : 'https://via.placeholder.com/400x250/0153b7/ffffff?text=' . urlencode($cat['name']); ?>"
                                             class="card-img-top" alt="<?php echo htmlspecialchars($article['title']); ?>" loading="lazy">
                                         <div class="card-body d-flex flex-column">
                                             <h5 class="card-title"><?php echo htmlspecialchars($article['title']); ?></h5>
@@ -289,7 +289,7 @@ include 'header.php';
                                                 <?php echo htmlspecialchars($article['excerpt'] ?: substr(strip_tags($article['content']), 0, 100) . '...'); ?>
                                             </p>
                                             <div class="d-flex justify-content-between align-items-center mt-auto">
-                                                <a href="article.php?slug=<?php echo urlencode($article['slug']); ?>"
+                                                <a href="/article/<?php echo htmlspecialchars($row['slug']); ?>"
                                                     class="btn btn-sm btn-outline-primary">Learn More</a>
                                                 <small class="text-muted">
                                                     <i class="far fa-calendar"></i>
