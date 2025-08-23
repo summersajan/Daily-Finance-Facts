@@ -350,7 +350,7 @@ include 'header.php';
                                     style="width: 80px; height: 80px; object-fit: cover;">
                                 <div>
                                     <h6>
-                                        <a href="article/<?php echo $related['slug']; ?>" class="text-decoration-none"
+                                        <a href="../article/<?php echo $related['slug']; ?>" class="text-decoration-none"
                                             style="color: var(--primary-blue);">
                                             <?php echo htmlspecialchars(substr($related['title'], 0, 60) . (strlen($related['title']) > 60 ? '...' : '')); ?>
                                         </a>
