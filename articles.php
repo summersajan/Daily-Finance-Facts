@@ -207,12 +207,11 @@ include 'header.php';
                             </div>
                         </div>
                         <div class="card-footer bg-white border-0 pt-0">
+                            <a href="article.php?slug=<?php echo urlencode($article['slug']); ?>"
+                                class="btn btn-outline-primary btn-sm w-100 mt-2">
+                                Read More <i class="fas fa-arrow-right"></i>
 
 
-                            <a href="/article/<?php echo htmlspecialchars($featured_article['slug']); ?>"
-                                cclass="btn btn-outline-primary btn-sm w-100 mt-2">Read More<i class="fas fa-arrow-right"></i>
-
-                            </a>
                         </div>
                     </div>
                 </div>
