@@ -492,7 +492,7 @@ include 'header.php';
 
             const formData = new FormData(this);
 
-            fetch('submit-comment.php', {
+            fetch('../submit-comment.php', {
                 method: 'POST',
                 body: formData
             })
