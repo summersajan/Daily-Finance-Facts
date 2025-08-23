@@ -100,30 +100,37 @@ include 'header.php';
     <div class="d-flex justify-content-between align-items-center mb-4">
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb bg-transparent px-0 mb-0">
+
+                <!-- Home -->
                 <li class="breadcrumb-item">
-                    <a href="../" style="color: var(--primary-blue); text-decoration: none;">
+                    <a href="/" style="color: var(--primary-blue); text-decoration: none;">
                         <i class="fas fa-home"></i> Home
                     </a>
                 </li>
-                <?php if ($article['category_name']): ?>
+
+                <!-- Category -->
+                <?php if (!empty($article['category_name']) && !empty($article['category_slug'])): ?>
                     <li class="breadcrumb-item">
-                        <a href="./#cat-<?php echo htmlspecialchars(strtolower(str_replace(' ', '-', $article['category_name']))); ?>"
+                        <a href="/category/<?php echo htmlspecialchars($article['category_slug']); ?>"
                             style="color: var(--primary-blue); text-decoration: none;">
                             <?php echo htmlspecialchars($article['category_name']); ?>
                         </a>
                     </li>
                 <?php endif; ?>
 
-
+                <!-- Current Article -->
                 <li class="breadcrumb-item active" aria-current="page" style="color: var(--text-light);">
                     <?php echo htmlspecialchars(substr($article['title'], 0, 50) . (strlen($article['title']) > 50 ? '...' : '')); ?>
                 </li>
             </ol>
         </nav>
+
+        <!-- Back button -->
         <button onclick="history.back()" class="btn btn-outline-primary btn-sm">
             <i class="fas fa-arrow-left"></i> Back
         </button>
     </div>
+
 
     <div class="row">
         <div class="col-lg-8">
