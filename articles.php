@@ -210,8 +210,7 @@ include 'header.php';
                             <a href="article.php?slug=<?php echo urlencode($article['slug']); ?>"
                                 class="btn btn-outline-primary btn-sm w-100 mt-2">
                                 Read More <i class="fas fa-arrow-right"></i>
-
-
+                            </a>
                         </div>
                     </div>
                 </div>
