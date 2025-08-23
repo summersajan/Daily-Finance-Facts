@@ -1,15 +1,27 @@
 RewriteEngine On
 RewriteBase /
 
-# Remove .php extension
+# --------------------------------------
+# 1. Remove .php extension (for direct PHP files like index.php → /index)
+# --------------------------------------
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME}\.php -f
 RewriteRule ^([^/]+)/?$ $1.php [L]
 
-
-
-# Rewrite category URLs
+# --------------------------------------
+# 2. Category URLs
+#    /category/saving-money → category.php?category=saving-money
+# --------------------------------------
 RewriteRule ^category/([a-zA-Z0-9_-]+)/?$ category.php?category=$1 [L,QSA]
 
-# Clean Article URLs
+# --------------------------------------
+# 3. Articles listing
+#    /articles → articles.php
+# --------------------------------------
+RewriteRule ^articles/?$ articles.php [L,QSA]
+
+# --------------------------------------
+# 4. Single Article
+#    /article/easy-habits-to-grow-your-savings → article.php?slug=easy-habits-to-grow-your-savings
+# --------------------------------------
 RewriteRule ^article/([a-zA-Z0-9_-]+)/?$ article.php?slug=$1 [L,QSA]

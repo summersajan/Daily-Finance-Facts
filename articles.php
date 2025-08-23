@@ -117,53 +117,7 @@ include 'header.php';
         </div>
     </div>
 
-    <!-- Filters 
-    <div class="card mb-4 shadow-sm">
-        <div class="card-body">
-            <form method="GET" action="articles.php" class="row g-3 align-items-end">
-                <div class="col-md-4">
-                    <label for="search" class="form-label text-muted">Search</label>
-                    <div class="input-group">
-                        <input type="text" class="form-control" id="search" name="search"
-                            placeholder="Search articles..." value="<?php echo htmlspecialchars($search_query); ?>">
-                        <button type="submit" class="btn btn-outline-primary"><i class="fas fa-search"></i></button>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <label for="category" class="form-label text-muted">Category</label>
-                    <select class="form-select" id="category" name="category">
-                        <option value="0">All Categories</option>
-                        <?php foreach ($categories as $category): ?>
-                            <option value="<?php echo $category['id']; ?>" <?php echo $category_filter == $category['id'] ? 'selected' : ''; ?>>
-                                <?php echo htmlspecialchars($category['name']); ?>
-                            </option>
-                        <?php endforeach; ?>
-                    </select>
-                </div>
-                <div class="col-md-3">
-                    <label for="sort" class="form-label text-muted">Sort By</label>
-                    <select class="form-select" id="sort" name="sort">
-                        <option value="latest" <?php echo $sort_by == 'latest' ? 'selected' : ''; ?>>Latest</option>
-                        <option value="oldest" <?php echo $sort_by == 'oldest' ? 'selected' : ''; ?>>Oldest</option>
-                        <option value="popular" <?php echo $sort_by == 'popular' ? 'selected' : ''; ?>>Most Popular
-                        </option>
-                        <option value="alphabetical" <?php echo $sort_by == 'alphabetical' ? 'selected' : ''; ?>>A-Z
-                        </option>
-                    </select>
-                </div>
-                <div class="col-md-2 d-flex align-items-end">
-                    <?php if (!empty($search_query) || $category_filter > 0 || $sort_by != 'latest'): ?>
-                        <a href="articles.php" class="btn btn-outline-secondary w-100">
-                            <i class="fas fa-times"></i> Clear
-                        </a>
-                    <?php endif; ?>
-                </div>
-            </form>
-        </div>
-    </div>
 
-                    -->
-    <!-- Grid of Articles -->
     <?php if ($articles): ?>
         <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
             <?php foreach ($articles as $article): ?>
@@ -171,7 +125,7 @@ include 'header.php';
                     <div class="card article-card h-100 shadow-sm border-0"
                         onclick="window.location.href='article.php?slug=<?php echo urlencode($article['slug']); ?>'">
                         <div class="position-relative">
-                            <img src="<?php echo $article['featured_image'] ? '/assets/images/articles/' . $article['featured_image'] : 'https://via.placeholder.com/400x250/0153b7/ffffff?text=' . substr($article['title'], 0, 2); ?>"
+                            <img src="<?php echo $article['featured_image'] ? 'assets/images/articles/' . $article['featured_image'] : 'https://via.placeholder.com/400x250/0153b7/ffffff?text=' . substr($article['title'], 0, 2); ?>"
                                 alt="<?php echo htmlspecialchars($article['title']); ?>" class="card-img-top"
                                 style="height:210px;object-fit:cover;">
                             <?php if ($article['category_name']): ?>
