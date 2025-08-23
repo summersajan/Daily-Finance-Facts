@@ -128,11 +128,12 @@ include 'header.php';
                             </div>
                         </div>
                         <div class="card-footer bg-white border-0 pt-0">
-                            <a href=../../article/<?php echo urlencode($article['slug']); ?>"
+                            <a href="../../article/<?php echo urlencode($article['slug']); ?>"
                                 class="btn btn-outline-primary btn-sm w-100">
                                 Read More <i class="fas fa-arrow-right"></i>
                             </a>
                         </div>
+
                     </div>
                 </div>
             <?php endforeach; ?>
