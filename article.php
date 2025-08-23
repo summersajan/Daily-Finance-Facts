@@ -317,11 +317,11 @@ include 'header.php';
             <!-- Back to Categories -->
             <div class="card mb-3 shadow-sm">
                 <div class="card-body text-center">
-                    <a href="index.php" class="btn btn-primary w-100">
+                    <a href="../../" class="btn btn-primary w-100">
                         <i class="fas fa-arrow-left"></i> Back to Homepage
                     </a>
                     <?php if ($article['category_name']): ?>
-                        <a href="articles.php?category=<?php echo urlencode($article['category_name']); ?>"
+                        <a href="../articles/<?php echo urlencode($article['category_name']); ?>"
                             class="btn btn-outline-primary w-100 mt-2">
                             <i class="fas fa-list"></i> More <?php echo htmlspecialchars($article['category_name']); ?>
                             Articles
@@ -347,7 +347,7 @@ include 'header.php';
                                     style="width: 80px; height: 80px; object-fit: cover;">
                                 <div>
                                     <h6>
-                                        <a href="article.php?slug=<?php echo $related['slug']; ?>" class="text-decoration-none"
+                                        <a href="article/<?php echo $related['slug']; ?>" class="text-decoration-none"
                                             style="color: var(--primary-blue);">
                                             <?php echo htmlspecialchars(substr($related['title'], 0, 60) . (strlen($related['title']) > 60 ? '...' : '')); ?>
                                         </a>
