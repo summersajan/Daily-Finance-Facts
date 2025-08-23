@@ -105,7 +105,7 @@ include 'header.php';
         <div class="row">
             <?php foreach ($articles as $article): ?>
                 <div class="col-lg-4 col-md-6 mb-4">
-                    <div class="card article-card h-100" data-href="article.php?slug=<?php echo urlencode($article['slug']); ?>"
+                    <div class="card article-card h-100" data-href="../../article/<?php echo urlencode($article['slug']); ?>"
                         style="cursor: pointer;">
                         <img src="<?php echo $article['featured_image'] ? '/assets/images/articles/' . $article['featured_image'] : 'https://via.placeholder.com/400x250/0153b7/ffffff?text=Article'; ?>"
                             alt="<?php echo htmlspecialchars($article['title']); ?>" class="card-img-top"
@@ -128,7 +128,7 @@ include 'header.php';
                             </div>
                         </div>
                         <div class="card-footer bg-white border-0 pt-0">
-                            <a href="article.php?slug=<?php echo urlencode($article['slug']); ?>"
+                            <a href=../../article/<?php echo urlencode($article['slug']); ?>"
                                 class="btn btn-outline-primary btn-sm w-100">
                                 Read More <i class="fas fa-arrow-right"></i>
                             </a>
