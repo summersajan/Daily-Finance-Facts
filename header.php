@@ -602,7 +602,7 @@ $db = $database->getConnection();
         <div class="container">
 
             <a class="navbar-brand" href="index.php">
-                <img src="assets/images/logo.svg" alt="Daily Finance Facts Logo">
+                <img src="/assets/images/logo.svg" alt="Daily Finance Facts Logo">
             </a>
 
 
