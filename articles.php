@@ -13,21 +13,32 @@ $offset = ($current_page - 1) * $articles_per_page;
 
 // Search and filter
 $search_query = trim($_GET['search'] ?? '');
-$category_filter = (int) ($_GET['category'] ?? 0);
+$category_slug = $_GET['category'] ?? null; // slug instead of numeric ID
 $sort_by = $_GET['sort'] ?? 'latest';
 
 // WHERE clause
 $where_conditions = ["a.status = 'published'"];
 $params = [];
 
+// Search filter
 if (!empty($search_query)) {
     $where_conditions[] = "(a.title LIKE :search OR a.content LIKE :search OR a.excerpt LIKE :search)";
     $params[':search'] = '%' . $search_query . '%';
 }
-if ($category_filter > 0) {
-    $where_conditions[] = "a.category_id = :category_id";
-    $params[':category_id'] = $category_filter;
+
+// Category filter by slug
+$selected_category = null;
+if (!empty($category_slug)) {
+    $cat_stmt = $db->prepare("SELECT id, name FROM categories WHERE slug = :slug AND status='active' LIMIT 1");
+    $cat_stmt->execute([':slug' => $category_slug]);
+    $selected_category = $cat_stmt->fetch(PDO::FETCH_ASSOC);
+
+    if ($selected_category) {
+        $where_conditions[] = "a.category_id = :category_id";
+        $params[':category_id'] = $selected_category['id'];
+    }
 }
+
 $where_clause = 'WHERE ' . implode(' AND ', $where_conditions);
 
 // ORDER BY clause
@@ -59,7 +70,7 @@ $total_articles = $count_stmt->fetch(PDO::FETCH_ASSOC)['total'];
 $total_pages = ceil($total_articles / $articles_per_page);
 
 // Get articles
-$articles_query = "SELECT a.*, c.name as category_name, c.color as category_color, u.full_name as author_name 
+$articles_query = "SELECT a.*, c.name as category_name, c.slug as category_slug, c.color as category_color, u.full_name as author_name 
     FROM articles a 
     LEFT JOIN categories c ON a.category_id = c.id 
     LEFT JOIN admin_users u ON a.author_id = u.id 
@@ -75,7 +86,7 @@ $articles_stmt->execute();
 $articles = $articles_stmt->fetchAll(PDO::FETCH_ASSOC);
 
 // Get categories for filter dropdown
-$categories_query = "SELECT id, name FROM categories WHERE status = 'active' ORDER BY name";
+$categories_query = "SELECT id, name, slug FROM categories WHERE status = 'active' ORDER BY name";
 $categories_stmt = $db->prepare($categories_query);
 $categories_stmt->execute();
 $categories = $categories_stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -89,15 +100,8 @@ include 'header.php';
             <h1 class="mb-2 h2" style="color:var(--primary-blue);font-weight:700;">
                 <?php if (!empty($search_query)): ?>
                     Search results for "<?php echo htmlspecialchars($search_query); ?>"
-                <?php elseif ($category_filter > 0): ?>
-                    <?php
-                    $selected_category = array_filter(
-                        $categories,
-                        fn($cat) => $cat['id'] == $category_filter
-                    );
-                    $selected_category = reset($selected_category);
-                    echo htmlspecialchars($selected_category['name']) . " Articles";
-                    ?>
+                <?php elseif ($selected_category): ?>
+                    <?php echo htmlspecialchars($selected_category['name']); ?> Articles
                 <?php else: ?>
                     All Articles
                 <?php endif; ?>
@@ -111,12 +115,11 @@ include 'header.php';
             </p>
         </div>
         <div class="col-md-4 text-md-end mt-3 mt-md-0">
-            <a href="index.php" class="btn btn-outline-primary">
+            <a href="/" class="btn btn-outline-primary">
                 <i class="fas fa-arrow-left"></i> Back to Home
             </a>
         </div>
     </div>
-
 
     <?php if ($articles): ?>
         <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
@@ -129,10 +132,11 @@ include 'header.php';
                                 alt="<?php echo htmlspecialchars($article['title']); ?>" class="card-img-top"
                                 style="height:210px;object-fit:cover;">
                             <?php if ($article['category_name']): ?>
-                                <span class="badge position-absolute top-0 start-0 m-2"
-                                    style="background:<?php echo $article['category_color'] ?: '#0153b7'; ?>">
+                                <a href="/articles/<?php echo htmlspecialchars($article['category_slug']); ?>"
+                                    class="badge position-absolute top-0 start-0 m-2"
+                                    style="background:<?php echo $article['category_color'] ?: '#0153b7'; ?>; text-decoration:none;">
                                     <?php echo htmlspecialchars($article['category_name']); ?>
-                                </span>
+                                </a>
                             <?php endif; ?>
                             <?php if ($article['is_featured']): ?>
                                 <span class="badge bg-warning position-absolute top-0 end-0 m-2">
@@ -232,29 +236,27 @@ include 'header.php';
             <p class="text-muted mb-4">
                 <?php if (!empty($search_query)): ?>
                     No articles match your search. Try changing your search term.
-                <?php elseif ($category_filter > 0): ?>
+                <?php elseif ($selected_category): ?>
                     No articles published for this category yet.
                 <?php else: ?>
                     No articles have been published yet.
                 <?php endif; ?>
             </p>
             <div class="d-flex gap-2 justify-content-center flex-wrap">
-                <?php if (!empty($search_query) || $category_filter > 0): ?>
+                <?php if (!empty($search_query) || $selected_category): ?>
                     <a href="/articles" class="btn btn-primary">
                         <i class="fas fa-list"></i> View All Articles
                     </a>
                 <?php endif; ?>
-                <a href="../" class="btn btn-outline-primary">
+                <a href="/" class="btn btn-outline-primary">
                     <i class="fas fa-home"></i> Back to Home
                 </a>
             </div>
         </div>
     <?php endif; ?>
-
-
 </div>
+
 <style>
-    /* Card grid and articles styling */
     .article-card {
         cursor: pointer;
         transition: all 0.12s ease;
