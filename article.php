@@ -321,12 +321,15 @@ include 'header.php';
                         <i class="fas fa-arrow-left"></i> Back to Homepage
                     </a>
                     <?php if ($article['category_name']): ?>
-                        <a href="../articles/<?php echo urlencode($article['category_name']); ?>"
-                            class="btn btn-outline-primary w-100 mt-2">
+                        <?php
+                        $category_slug = str_replace(' ', '-', strtolower($article['category_name']));
+                        ?>
+                        <a href="../articles/<?php echo $category_slug; ?>" class="btn btn-outline-primary w-100 mt-2">
                             <i class="fas fa-list"></i> More <?php echo htmlspecialchars($article['category_name']); ?>
                             Articles
                         </a>
                     <?php endif; ?>
+
                 </div>
             </div>
 
