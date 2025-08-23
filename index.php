@@ -480,65 +480,6 @@ include 'header.php';
     }
 </script>
 
-<style>
-    /* Card grid / visuals */
-    .article-card {
-        cursor: pointer;
-        transition: all 0.12s ease;
-        border: none;
-        box-shadow: 0 2px 10px rgba(1, 83, 183, 0.06);
-        border-radius: 15px;
-        background: #fff;
-    }
 
-    .article-card:hover {
-        transform: translateY(-5px) scale(1.01);
-        box-shadow: 0 8px 26px rgba(1, 83, 183, 0.15);
-    }
-
-    .article-card .card-img-top {
-        border-top-left-radius: 15px;
-        border-top-right-radius: 15px;
-    }
-
-    .newsletter-signup {
-        background: linear-gradient(87deg, #e6f0fa 0, #fff 100%);
-        border-radius: 14px;
-        padding: 2.2rem 1.6rem 2rem;
-    }
-
-    .section-title {
-        font-weight: 800;
-        color: var(--primary-blue);
-        letter-spacing: .02em;
-    }
-
-    .title-underline {
-        height: 4px;
-        width: 70px;
-        border-radius: 3px;
-        background: #0153b7;
-        margin-top: 6px;
-    }
-
-    .article-title-small a {
-        color: var(--primary-blue);
-    }
-
-    .article-title-small a:hover {
-        text-decoration: underline;
-    }
-
-    @media (max-width: 768px) {
-        .article-card .card-img-top {
-            height: 170px;
-            object-fit: cover;
-        }
-
-        .newsletter-signup {
-            padding: 1.2rem;
-        }
-    }
-</style>
 
 <?php include 'footer.php'; ?>
