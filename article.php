@@ -107,7 +107,7 @@ include 'header.php';
                 </li>
                 <?php if ($article['category_name']): ?>
                     <li class="breadcrumb-item">
-                        <a href="./category/<?php echo htmlspecialchars(strtolower(str_replace(' ', '-', $article['category_name']))); ?>"
+                        <a href="../category/<?php echo htmlspecialchars(strtolower(str_replace(' ', '-', $article['category_name']))); ?>"
                             style="color: var(--primary-blue); text-decoration: none;">
                             <?php echo htmlspecialchars($article['category_name']); ?>
                         </a>
