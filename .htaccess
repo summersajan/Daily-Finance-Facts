@@ -25,3 +25,10 @@ RewriteRule ^articles/?$ articles.php [L,QSA]
 #    /article/easy-habits-to-grow-your-savings → article.php?slug=easy-habits-to-grow-your-savings
 # --------------------------------------
 RewriteRule ^article/([a-zA-Z0-9_-]+)/?$ article.php?slug=$1 [L,QSA]
+
+
+# Route: articles/CategoryName → articles.php?category=CategoryName
+RewriteRule ^articles/([^/]+)/?$ articles.php?category=$1 [L]
+
+# Route: article/123 → article.php?id=123
+RewriteRule ^article/([0-9]+)/?$ article.php?id=$1 [L]
