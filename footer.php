@@ -36,7 +36,7 @@
                         $footer_cat_stmt->execute();
                         $footer_categories = $footer_cat_stmt->fetchAll(PDO::FETCH_ASSOC);
                         foreach ($footer_categories as $cat) {
-                            echo '<li><a href="/article/' . htmlspecialchars($cat['slug']) . '">' . htmlspecialchars($cat['name']) . '</a></li>';
+                            echo '<li><a href="/articles/' . htmlspecialchars($cat['slug']) . '">' . htmlspecialchars($cat['name']) . '</a></li>';
                         }
                     }
                     ?>
