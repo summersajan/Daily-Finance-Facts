@@ -123,7 +123,7 @@ include 'header.php';
             <?php foreach ($articles as $article): ?>
                 <div class="col">
                     <div class="card article-card h-100 shadow-sm border-0"
-                        onclick="window.location.href='article.php?slug=<?php echo urlencode($article['slug']); ?>'">
+                        onclick="window.location.href='/article/<?php echo htmlspecialchars($article['slug']); ?>'">
                         <div class="position-relative">
                             <img src="<?php echo $article['featured_image'] ? 'assets/images/articles/' . $article['featured_image'] : 'https://via.placeholder.com/400x250/0153b7/ffffff?text=' . substr($article['title'], 0, 2); ?>"
                                 alt="<?php echo htmlspecialchars($article['title']); ?>" class="card-img-top"
@@ -161,7 +161,7 @@ include 'header.php';
                             </div>
                         </div>
                         <div class="card-footer bg-white border-0 pt-0">
-                            <a href="article.php?slug=<?php echo urlencode($article['slug']); ?>"
+                            <a href="/article/<?php echo htmlspecialchars($article['slug']); ?>"
                                 class="btn btn-outline-primary btn-sm w-100 mt-2">
                                 Read More <i class="fas fa-arrow-right"></i>
                             </a>
@@ -240,11 +240,11 @@ include 'header.php';
             </p>
             <div class="d-flex gap-2 justify-content-center flex-wrap">
                 <?php if (!empty($search_query) || $category_filter > 0): ?>
-                    <a href="articles.php" class="btn btn-primary">
+                    <a href="/articles" class="btn btn-primary">
                         <i class="fas fa-list"></i> View All Articles
                     </a>
                 <?php endif; ?>
-                <a href="index.php" class="btn btn-outline-primary">
+                <a href="../" class="btn btn-outline-primary">
                     <i class="fas fa-home"></i> Back to Home
                 </a>
             </div>

@@ -218,7 +218,8 @@ include 'header.php';
                                 <p class="article-date"><i class="far fa-calendar"></i> <?php echo date('M d, Y'); ?></p>
                                 <p class="article-excerpt">Your trusted source for financial advice, investment tips, and money
                                     management strategies. Check back soon for our latest articles!</p>
-                                <a href="articles.php" class="btn btn-outline-primary">Browse Articles</a>
+                                <a href="/article/easy-habits-to-grow-your-savings">Browse Articles</a>
+
                             </div>
                         </div>
                     <?php endif; ?>
@@ -426,29 +427,7 @@ include 'header.php';
             window.location.href = $(this).data('href');
         });
 
-        // Clear search functionality
-        /* const searchInput = document.querySelector('input[name="search"]');
-         if (searchInput) {
-             let timeout;
-             searchInput.addEventListener('input', function () {
-                 clearTimeout(timeout);
-                 if (this.value.trim() === '') {
-                     timeout = setTimeout(() => {
-                         if (this.value.trim() === '') {
-                             window.location.href = 'index.php';
-                         }
-                     }, 300);
-                 }
-             });
- 
-             // Clear on escape key
-             searchInput.addEventListener('keydown', function (e) {
-                 if (e.key === 'Escape') {
-                     this.value = '';
-                     window.location.href = 'index.php';
-                 }
-             });
-         }*/
+
 
         // Article card hover effects
         $('.article-card').hover(
