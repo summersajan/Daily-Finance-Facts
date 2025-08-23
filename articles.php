@@ -171,7 +171,7 @@ include 'header.php';
                     <div class="card article-card h-100 shadow-sm border-0"
                         onclick="window.location.href='article.php?slug=<?php echo urlencode($article['slug']); ?>'">
                         <div class="position-relative">
-                            <img src="<?php echo $article['featured_image'] ? 'assets/images/articles/' . $article['featured_image'] : 'https://via.placeholder.com/400x250/0153b7/ffffff?text=' . substr($article['title'], 0, 2); ?>"
+                            <img src="<?php echo $article['featured_image'] ? '/assets/images/articles/' . $article['featured_image'] : 'https://via.placeholder.com/400x250/0153b7/ffffff?text=' . substr($article['title'], 0, 2); ?>"
                                 alt="<?php echo htmlspecialchars($article['title']); ?>" class="card-img-top"
                                 style="height:210px;object-fit:cover;">
                             <?php if ($article['category_name']): ?>
@@ -207,9 +207,11 @@ include 'header.php';
                             </div>
                         </div>
                         <div class="card-footer bg-white border-0 pt-0">
-                            <a href="article.php?slug=<?php echo urlencode($article['slug']); ?>"
-                                class="btn btn-outline-primary btn-sm w-100 mt-2">
-                                Read More <i class="fas fa-arrow-right"></i>
+
+
+                            <a href="/article/<?php echo htmlspecialchars($featured_article['slug']); ?>"
+                                cclass="btn btn-outline-primary btn-sm w-100 mt-2">Read More<i class="fas fa-arrow-right"></i>
+
                             </a>
                         </div>
                     </div>
