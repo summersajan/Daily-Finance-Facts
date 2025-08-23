@@ -3,7 +3,7 @@
         <div class="row justify-content-between">
             <!-- Logo and About Column -->
             <div class="col-md-4 mb-4 mb-md-0">
-                <a href="index.php" class="d-inline-block mb-2">
+                <a href="https://dailyfinancefacts.com/" class="d-inline-block mb-2">
                     <img src="/assets/images/logo.svg" alt="Daily Finance Facts Logo"
                         style="height:48px;max-width:220px;">
 
