@@ -64,7 +64,7 @@ include 'header.php';
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb bg-transparent px-0 mb-3">
             <li class="breadcrumb-item">
-                <a href="index.php" style="color: var(--primary-blue); text-decoration: none;">
+                <a href="/" style="color: var(--primary-blue); text-decoration: none;">
                     <i class="fas fa-home"></i> Home
                 </a>
             </li>
