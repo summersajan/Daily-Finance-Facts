@@ -28,7 +28,7 @@
             <div class="col-md-4 mb-4 mb-md-0">
                 <h5>Quick Links</h5>
                 <ul class="list-unstyled">
-                    <li><a href="index.php">Home</a></li>
+                    <li><a href="https://dailyfinancefacts.com">Home</a></li>
                     <!-- If categories are needed here, fetch dynamically -->
                     <?php
                     if (isset($db)) {
