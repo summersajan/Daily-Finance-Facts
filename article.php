@@ -498,6 +498,7 @@ include 'header.php';
             })
                 .then(response => response.json())
                 .then(data => {
+                    console.log('Response:', data);
                     if (data.success) {
                         showAlert('success', data.message);
                         commentForm.reset();

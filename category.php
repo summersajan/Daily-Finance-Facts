@@ -180,7 +180,7 @@ include 'header.php';
         <div class="alert alert-info text-center">
             <h4>No Articles Found</h4>
             <p>No articles have been published in this category yet. Check back soon!</p>
-            <a href="index.php" class="btn btn-primary">Browse All Categories</a>
+            <a href="../../" class="btn btn-primary">Browse All Categories</a>
         </div>
     <?php endif; ?>
 
