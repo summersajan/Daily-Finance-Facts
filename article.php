@@ -101,7 +101,7 @@ include 'header.php';
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb bg-transparent px-0 mb-0">
                 <li class="breadcrumb-item">
-                    <a href="index.php" style="color: var(--primary-blue); text-decoration: none;">
+                    <a onclick="history.back()" style="color: var(--primary-blue); text-decoration: none;">
                         <i class="fas fa-home"></i> Home
                     </a>
                 </li>
@@ -130,7 +130,7 @@ include 'header.php';
             <!-- Article Content -->
             <article class="card shadow-sm">
                 <?php if ($article['featured_image']): ?>
-                    <img src="assets/images/articles/<?php echo $article['featured_image']; ?>" class="card-img-top"
+                    <img src="/assets/images/articles/<?php echo $article['featured_image']; ?>" class="card-img-top"
                         alt="<?php echo htmlspecialchars($article['title']); ?>" style="height: 400px; object-fit: cover;">
                 <?php endif; ?>
 
@@ -342,7 +342,7 @@ include 'header.php';
                     <div class="card-body">
                         <?php foreach ($related_articles as $related): ?>
                             <div class="d-flex mb-3 pb-3 border-bottom">
-                                <img src="<?php echo $related['featured_image'] ? 'assets/images/articles/' . $related['featured_image'] : 'https://via.placeholder.com/80x80/0153b7/ffffff?text=' . substr($related['title'], 0, 1); ?>"
+                                <img src="<?php echo $related['featured_image'] ? '/assets/images/articles/' . $related['featured_image'] : 'https://via.placeholder.com/80x80/0153b7/ffffff?text=' . substr($related['title'], 0, 1); ?>"
                                     alt="<?php echo htmlspecialchars($related['title']); ?>" class="rounded me-3"
                                     style="width: 80px; height: 80px; object-fit: cover;">
                                 <div>
