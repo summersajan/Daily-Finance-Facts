@@ -2,7 +2,7 @@ RewriteEngine On
 RewriteBase /
 
 # --------------------------------------
-# 1. Remove .php extension (for direct PHP files like index.php → /index)
+# 1. Remove .php extension (index.php → /index)
 # --------------------------------------
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME}\.php -f
@@ -15,20 +15,19 @@ RewriteRule ^([^/]+)/?$ $1.php [L]
 RewriteRule ^category/([a-zA-Z0-9_-]+)/?$ category.php?category=$1 [L,QSA]
 
 # --------------------------------------
-# 3. Articles listing
+# 3. Articles listing (all articles)
 #    /articles → articles.php
 # --------------------------------------
 RewriteRule ^articles/?$ articles.php [L,QSA]
 
 # --------------------------------------
-# 4. Single Article
+# 4. Articles by category
+#    /articles/investing → articles.php?category=investing
+# --------------------------------------
+RewriteRule ^articles/([a-zA-Z0-9_-]+)/?$ articles.php?category=$1 [L,QSA]
+
+# --------------------------------------
+# 5. Single Article by slug
 #    /article/easy-habits-to-grow-your-savings → article.php?slug=easy-habits-to-grow-your-savings
 # --------------------------------------
 RewriteRule ^article/([a-zA-Z0-9_-]+)/?$ article.php?slug=$1 [L,QSA]
-
-
-# Route: articles/CategoryName → articles.php?category=CategoryName
-RewriteRule ^articles/([^/]+)/?$ articles.php?category=$1 [L]
-
-# Route: article/123 → article.php?id=123
-RewriteRule ^article/([0-9]+)/?$ article.php?id=$1 [L]
