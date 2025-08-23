@@ -1,4 +1,5 @@
 RewriteEngine On
+RewriteBase /
 
 # Remove .php extension
 RewriteCond %{REQUEST_FILENAME} !-d
