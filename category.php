@@ -64,7 +64,7 @@ include 'header.php';
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb bg-transparent px-0 mb-3">
             <li class="breadcrumb-item">
-                <a href="/" style="color: var(--primary-blue); text-decoration: none;">
+                <a href="../../" style="color: var(--primary-blue); text-decoration: none;">
                     <i class="fas fa-home"></i> Home
                 </a>
             </li>
@@ -94,7 +94,7 @@ include 'header.php';
             </p>
         </div>
         <div class="col-md-4 text-md-end">
-            <a href="index.php" class="btn btn-outline-primary">
+            <a href="../../" class="btn btn-outline-primary">
                 <i class="fas fa-arrow-left"></i> Back to Homepage
             </a>
         </div>
@@ -107,7 +107,7 @@ include 'header.php';
                 <div class="col-lg-4 col-md-6 mb-4">
                     <div class="card article-card h-100" data-href="article.php?slug=<?php echo urlencode($article['slug']); ?>"
                         style="cursor: pointer;">
-                        <img src="<?php echo $article['featured_image'] ? 'assets/images/articles/' . $article['featured_image'] : 'https://via.placeholder.com/400x250/0153b7/ffffff?text=Article'; ?>"
+                        <img src="<?php echo $article['featured_image'] ? '/assets/images/articles/' . $article['featured_image'] : 'https://via.placeholder.com/400x250/0153b7/ffffff?text=Article'; ?>"
                             alt="<?php echo htmlspecialchars($article['title']); ?>" class="card-img-top"
                             style="height: 220px; object-fit: cover;">
                         <div class="card-body d-flex flex-column">
