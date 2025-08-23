@@ -601,7 +601,7 @@ $db = $database->getConnection();
     <nav class="navbar navbar-expand-lg custom-navbar">
         <div class="container">
 
-            <a class="navbar-brand" href="https://dailyfinancefacts.com/">
+            <a class="navbar-brand" href="https://dailyfinancefacts.com">
                 <img src="/assets/images/logo.svg" alt="Daily Finance Facts Logo">
             </a>
 
