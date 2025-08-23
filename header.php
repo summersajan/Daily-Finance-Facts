@@ -661,7 +661,8 @@ $db = $database->getConnection();
 
 
                     <li class="nav-item">
-                        <form method="GET" action="index.php" class="d-flex search-form ms-2">
+                        <form method="GET" action="/search" class="d-flex search-form ms-2" onsubmit="event.preventDefault(); 
+                window.location='/search/' + encodeURIComponent(this.search.value.trim());">
                             <input type="text" name="search" class="form-control form-control-sm me-1"
                                 placeholder="Search..." style="width: 150px;"
                                 value="<?php echo htmlspecialchars($_GET['search'] ?? ''); ?>">
@@ -669,6 +670,7 @@ $db = $database->getConnection();
                                 <i class="fas fa-search"></i>
                             </button>
                         </form>
+
                     </li>
                 </ul>
             </div>

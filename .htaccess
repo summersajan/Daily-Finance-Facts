@@ -4,8 +4,7 @@ RewriteBase /
 # --- Pretty Search URLs ---
 # /search              -> index.php (will read ?search= from querystring if present)
 RewriteRule ^search/?$ index.php [L,QSA]
-# /search/anything     -> index.php?search=anything
-RewriteRule ^search/(.+)/?$ index.php?search=$1 [L,QSA]
+
 
 # --- Articles listing ---
 RewriteRule ^articles/?$ articles.php [L,QSA]
@@ -22,3 +21,6 @@ RewriteRule ^category/([a-zA-Z0-9_-]+)/?$ category.php?category=$1 [L,QSA]
 RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME}\.php -f
 RewriteRule ^([^/]+)/?$ $1.php [L,QSA]
+
+# Clean search URLs: /search/ok → /index.php?search=ok
+RewriteRule ^search/([^/]+)/?$ index.php?search=$1 [L,QSA]
