@@ -613,7 +613,7 @@ $db = $database->getConnection();
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
-                        <a class="nav-link" href="../index.php">HOME</a>
+                        <a class="nav-link" href="../">HOME</a>
                     </li>
                     <?php
                     // Get the current URL path and extract category from it
