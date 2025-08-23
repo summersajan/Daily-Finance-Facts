@@ -132,9 +132,11 @@ include 'header.php';
                                 class="btn btn-outline-primary btn-sm w-100">
                                 Read More <i class="fas fa-arrow-right"></i>
                             </a>
-                        </div>
 
+                        </div>
+                        <br>
                     </div>
+
                 </div>
             <?php endforeach; ?>
         </div>
