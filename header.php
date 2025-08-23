@@ -620,27 +620,35 @@ $db = $database->getConnection();
                     $current_path = $_SERVER['REQUEST_URI'] ?? '';
                     $current_category = '';
 
-                    // Check if we're on a category page
+                    // Detect current category
                     if (strpos($current_path, 'category.php?category=') !== false) {
+                        // Old query-string style
                         parse_str(parse_url($current_path, PHP_URL_QUERY), $params);
                         $current_category = $params['category'] ?? '';
-                    } elseif (preg_match('/\/category\/([^\/\?]+)/', $current_path, $matches)) {
+                    } elseif (preg_match('#/category/([^/]+)#', $current_path, $matches)) {
+                        // Clean URL style
                         $current_category = $matches[1];
                     }
 
-                    // Fetch categories for navigation (only if not in search mode and $db is available)
+                    // Fetch categories for navigation
                     if (isset($db) && empty($_GET['search'])) {
                         try {
-                            $nav_cat_stmt = $db->prepare("SELECT name, slug FROM categories WHERE status='active' ORDER BY id ASC LIMIT 4");
+                            $nav_cat_stmt = $db->prepare("
+            SELECT name, slug 
+            FROM categories 
+            WHERE status='active' 
+            ORDER BY id ASC 
+            LIMIT 4
+        ");
                             $nav_cat_stmt->execute();
                             $nav_categories = $nav_cat_stmt->fetchAll(PDO::FETCH_ASSOC);
 
                             foreach ($nav_categories as $nav_cat) {
-                                // Check if this category is currently active
                                 $is_active = ($current_category === $nav_cat['slug']) ? 'active' : '';
 
                                 echo '<li class="nav-item">';
-                                echo '<a class="nav-link ' . $is_active . '" href="category.php?category=' . htmlspecialchars($nav_cat['slug']) . '">';
+                                // Use clean URL instead of category.php?category=
+                                echo '<a class="nav-link ' . $is_active . '" href="/category/' . htmlspecialchars($nav_cat['slug']) . '">';
                                 echo htmlspecialchars(strtoupper($nav_cat['name']));
                                 echo '</a>';
                                 echo '</li>';
@@ -650,6 +658,7 @@ $db = $database->getConnection();
                         }
                     }
                     ?>
+
 
                     <li class="nav-item">
                         <form method="GET" action="index.php" class="d-flex search-form ms-2">

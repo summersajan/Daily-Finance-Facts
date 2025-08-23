@@ -1,0 +1,11 @@
+RewriteEngine On
+
+# Remove .php extension
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME}\.php -f
+RewriteRule ^([^/]+)/?$ $1.php [L]
+
+
+
+# Rewrite category URLs
+RewriteRule ^category/([a-zA-Z0-9_-]+)/?$ category.php?category=$1 [L,QSA]

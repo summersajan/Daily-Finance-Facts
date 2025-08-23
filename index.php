@@ -21,36 +21,58 @@ if ($search_query !== '') {
                             AND (a.content IS NOT NULL AND TRIM(a.content) != '')
                             AND (a.title IS NOT NULL AND TRIM(a.title) != '')
                             AND (
-                                a.title LIKE :q 
-                                OR a.excerpt LIKE :q 
-                                OR (a.content LIKE :q AND a.content NOT LIKE '%<img%>%')
+                                LOWER(a.title) LIKE LOWER(:q) 
+                                OR LOWER(a.excerpt) LIKE LOWER(:q) 
+                                OR LOWER(c.name) LIKE LOWER(:q)
+                                OR (LOWER(a.content) LIKE LOWER(:q) AND a.content NOT LIKE '%<img%>%')
                             )
                           ORDER BY 
                             CASE 
-                                WHEN a.title LIKE :q THEN 1
-                                WHEN a.excerpt LIKE :q THEN 2
-                                WHEN a.content LIKE :q THEN 3
-                                ELSE 4
+                                WHEN LOWER(a.title) LIKE LOWER(:q) THEN 1
+                                WHEN LOWER(a.excerpt) LIKE LOWER(:q) THEN 2
+                                WHEN LOWER(c.name) LIKE LOWER(:q) THEN 3
+                                WHEN LOWER(a.content) LIKE LOWER(:q) THEN 4
+                                ELSE 5
                             END,
                             a.publish_date DESC
                           LIMIT 50");
     $stmt->execute([':q' => "%$search_query%"]);
     $potential_results = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-    // Further filter in PHP to ensure no image-related matches
+    // Further filter in PHP to ensure no image-related matches in content
     foreach ($potential_results as $article) {
-        $clean_content = preg_replace('/<img[^>]*>/i', '', $article['content']);
-        $clean_content = strip_tags($clean_content);
+        $match_found = false;
 
-        if (
-            stripos($article['title'], $search_query) !== false ||
-            stripos($article['excerpt'], $search_query) !== false ||
-            stripos($clean_content, $search_query) !== false
-        ) {
+        // Check title match
+        if (stripos($article['title'], $search_query) !== false) {
+            $match_found = true;
+        }
+
+        // Check excerpt match  
+        if (stripos($article['excerpt'], $search_query) !== false) {
+            $match_found = true;
+        }
+
+        // Check category name match
+        if (stripos($article['category_name'], $search_query) !== false) {
+            $match_found = true;
+        }
+
+        // Check content match (after removing images)
+        if (!$match_found) {
+            $clean_content = preg_replace('/<img[^>]*>/i', '', $article['content']);
+            $clean_content = strip_tags($clean_content);
+            if (stripos($clean_content, $search_query) !== false) {
+                $match_found = true;
+            }
+        }
+
+        if ($match_found) {
             $search_results[] = $article;
         }
     }
 }
+
 
 
 // Get featured article and other content only if not searching
