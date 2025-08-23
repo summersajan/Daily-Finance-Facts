@@ -101,7 +101,7 @@ include 'header.php';
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb bg-transparent px-0 mb-0">
                 <li class="breadcrumb-item">
-                    <a onclick="history.back()" style="color: var(--primary-blue); text-decoration: none;">
+                    <a href="../" style="color: var(--primary-blue); text-decoration: none;">
                         <i class="fas fa-home"></i> Home
                     </a>
                 </li>
