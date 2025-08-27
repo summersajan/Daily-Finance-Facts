@@ -24,3 +24,12 @@ RewriteRule ^([^/]+)/?$ $1.php [L,QSA]
 
 # Clean search URLs: /search/ok → /index.php?search=ok
 RewriteRule ^search/([^/]+)/?$ index.php?search=$1 [L,QSA]
+# --- Static Pages ---
+RewriteRule ^privacy/?$ privacy.php [L,QSA]
+RewriteRule ^about/?$ about.php [L,QSA]
+RewriteRule ^contact/?$ contact.php [L,QSA]
+
+# --- Remove .php extension (fallback) ---
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME}\.php -f
+RewriteRule ^([^/]+)/?$ $1.php [L,QSA]
