@@ -1,7 +1,7 @@
 <?php
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
-$page_title = "Daily Finance Facts - Your Complete Financial Guide";
+$page_title = "1Daily Finance Facts - Your Complete Financial Guide";
 require_once 'config/database.php';
 
 $database = new Database();
