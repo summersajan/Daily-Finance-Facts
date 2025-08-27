@@ -55,7 +55,7 @@
             <h2 class="h5 fw-bold mb-3">Get in Touch</h2>
             <p>If you have any questions, suggestions, or feedback, please reach out to us:</p>
             <ul>
-                <li>Email: <a href="mailto:contact@dailyfinancefacts.com">contact@dailyfinancefacts.com</a></li>
+                <li>Email: <a href="mailto:support@dailyfinancefacts.com">support@dailyfinancefacts.com</a></li>
                 <li>Response time: Within 1–2 business days</li>
             </ul>
         </div>

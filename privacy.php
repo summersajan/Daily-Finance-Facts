@@ -57,7 +57,7 @@
                 services, such as anonymous analytics data. We never sell or share your personal details with third
                 parties without your consent.</p>
             <p>By using our site, you agree to this Privacy Policy. If you have questions, please contact us at <a
-                    href="mailto:contact@dailyfinancefacts.com">contact@dailyfinancefacts.com</a>.</p>
+                    href="mailto:support@dailyfinancefacts.com">support@dailyfinancefacts.com</a>.</p>
         </div>
     </section>
 
