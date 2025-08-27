@@ -127,7 +127,7 @@ include 'header.php';
                         <a href="/" style="font-weight:700;color:var(--primary-blue);">Home</a>
                     </li>
                     <li class="breadcrumb-item active" aria-current="page" style="color:var(--primary-blue);">
-                        You searched for
+                        You searched fors
                     </li>
                 </ol>
             </nav>
