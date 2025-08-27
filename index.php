@@ -231,7 +231,7 @@ include 'header.php';
                                 <br>
                                 <a href="/article/<?php echo htmlspecialchars($featured_article['slug']); ?>"
                                     class="btn btn-outline-primary">Read More</a>
-                                <br>
+                                <br><br><br>
                             </div>
                         </div>
                     <?php else: ?>
