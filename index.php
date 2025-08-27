@@ -209,6 +209,7 @@ include 'header.php';
                                 ? '/assets/images/articles/' . htmlspecialchars($featured_article['featured_image'])
                                 : 'https://via.placeholder.com/500x300/0153b7/ffffff?text=Featured+Article'; ?>"
                                 alt="<?php echo htmlspecialchars($featured_article['title']); ?>" class="img-fluid">
+                            <br>
                             <div class="article-content">
                                 <h3 class="article-title"><?php echo htmlspecialchars($featured_article['title']); ?></h3>
                                 <p class="article-date">
@@ -231,7 +232,6 @@ include 'header.php';
                                 <br>
                                 <a href="/article/<?php echo htmlspecialchars($featured_article['slug']); ?>"
                                     class="btn btn-outline-primary">Read More</a>
-                                <br><br>
                             </div>
                         </div>
                     <?php else: ?>
