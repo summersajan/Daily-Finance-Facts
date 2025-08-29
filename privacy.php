@@ -31,17 +31,7 @@
 </head>
 
 <body>
-    <header class="dd-gradient text-white py-5">
-        <div class="container-xxl d-flex flex-column flex-md-row align-items-center justify-content-between">
-            <div>
-                <h1 class="display-5 fw-bold mb-2">Privacy Policy</h1>
-                <p class="lead mb-0">Your privacy matters to us.</p>
-            </div>
-            <div class="mt-3 mt-md-0">
-                <a href="/" class="btn btn-light fw-semibold shadow-soft rounded-2xl">🏠 Home</a>
-            </div>
-        </div>
-    </header>
+
 
     <section class="py-5">
         <div class="container-xxl bg-white p-5 rounded-2xl shadow-soft">
