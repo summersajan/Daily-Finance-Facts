@@ -32,6 +32,7 @@
 
 <body>
 
+    <h1 class="display-5 fw-bold mb-2">Privacy Policy</h1>
 
     <section class="py-5">
         <div class="container-xxl bg-white p-5 rounded-2xl shadow-soft">
