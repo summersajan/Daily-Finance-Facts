@@ -27,8 +27,9 @@
 
 
     <section class="py-5">
+        <h2 class="container-xxl">About Us</h2>
+        <br>
         <div class="container-xxl bg-white p-5 rounded-2xl shadow-soft">
-            <h1 class="display-5 fw-bold mb-2">About Us</h1>
             <h2 class="h5 fw-bold mb-3">Our Mission</h2>
             <p>Daily Finance Facts provides actionable personal finance, investing, and crypto insights so you can make
                 smarter decisions every day.</p>
