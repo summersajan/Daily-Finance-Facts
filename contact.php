@@ -34,7 +34,8 @@
 
 
     <section class="py-5">
-        <h3 class="container-xxl">Contact Us</h3>
+        <h2 class="container-xxl">Contact Us</h2>
+        <br>
         <div class="container-xxl bg-white p-5 rounded-2xl shadow-soft">
 
             <h2 class="h5 fw-bold mb-3">Get in Touch</h2>
