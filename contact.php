@@ -34,8 +34,9 @@
 
 
     <section class="py-5">
+        <h1 class="display-5 fw-bold mb-2">Contact Us</h1>
         <div class="container-xxl bg-white p-5 rounded-2xl shadow-soft">
-            <h1 class="display-5 fw-bold mb-2">Contact Us</h1>
+
             <h2 class="h5 fw-bold mb-3">Get in Touch</h2>
             <p>If you have any questions, suggestions, or feedback, please reach out to us:</p>
             <ul>
