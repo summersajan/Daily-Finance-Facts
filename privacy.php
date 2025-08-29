@@ -36,7 +36,7 @@
 
     <section class="py-5">
         <div class="container-xxl bg-white p-5 rounded-2xl shadow-soft">
-            <h3 class="display-5 fw-bold mb-2">Privacy Policy</h3>
+            <p><strong>Privacy Policy</p>
             <p><strong>Last updated:</strong> August 27, 2025</p>
             <p>We at Daily Finance Facts value your privacy. We only collect information necessary to improve our
                 services, such as anonymous analytics data. We never sell or share your personal details with third
